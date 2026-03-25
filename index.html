@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autodíly STARÝ, s.r.o. — Uherské Hradiště</title>
+  <meta name="description" content="Autodíly STARÝ, s.r.o. — prodej autodílů, baterií, olejů a příslušenství v Uherském Hradišti. Od roku 1992. Hodnocení 4.8/5 (197 recenzí).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --slate-dark:  #1B2B3B;
+      --slate-mid:   #243344;
+      --slate-soft:  #2E4057;
+      --orange:      #F97316;
+      --orange-d:    #E86610;
+      --orange-l:    #FEF3E8;
+      --orange-pale: #FFFBF7;
+      --cool:        #F8FAFC;
+      --white:       #FFFFFF;
+      --text-dark:   #1B2B3B;
+      --text-mid:    #4A5D6E;
+      --text-light:  #7A8D9C;
+      --border:      #DDE8F0;
+      --nav-h:       70px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.15; }
+    h1 { font-size: clamp(2.6rem, 5.5vw, 4.4rem); font-weight: 800; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 700; }
+    h3 { font-size: 1.15rem; font-weight: 700; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      margin-bottom: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange);
+    }
+    .section-label::before, .section-label::after {
+      content: ''; display: block; width: 32px; height: 2px;
+      background: var(--orange); flex-shrink: 0;
+    }
+    .section-label--left { justify-content: flex-start; }
+    .section-label--left::before { display: none; }
+    .section-label--dark { color: rgba(249,115,22,.75); }
+    .section-label--dark::before, .section-label--dark::after { background: rgba(249,115,22,.5); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px; border-radius: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.88rem; font-weight: 700;
+      text-decoration: none; transition: all .22s ease;
+      cursor: pointer; border: 2px solid transparent;
+    }
+    .btn-primary   { background: var(--orange); color: var(--white); border-color: var(--orange); }
+    .btn-primary:hover  { background: var(--orange-d); border-color: var(--orange-d); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249,115,22,.35); }
+    .btn-ghost    { background: transparent; color: var(--white); border-color: rgba(255,255,255,.35); }
+    .btn-ghost:hover   { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.65); transform: translateY(-2px); }
+    .btn-outline  { background: transparent; color: var(--orange); border-color: var(--orange); }
+    .btn-outline:hover { background: var(--orange); color: var(--white); transform: translateY(-2px); }
+
+    /* ══════════════════════════
+       NAV
+    ══════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: var(--nav-h);
+      display: flex; align-items: center; padding: 0 5%;
+      transition: background .3s ease, box-shadow .3s ease;
+    }
+    .nav.scrolled { background: var(--slate-dark); box-shadow: 0 2px 24px rgba(0,0,0,.3); }
+    .nav__inner {
+      width: 100%; max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav__logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+    .nav__logo-icon {
+      width: 40px; height: 40px; background: var(--orange); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .nav__logo-icon svg { width: 22px; height: 22px; }
+    .nav__logo-text { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.65rem; font-weight: 800; color: var(--white); line-height: 1; }
+    .nav__logo-text span { color: var(--orange); }
+    .nav__links { display: flex; align-items: center; gap: 30px; list-style: none; }
+    .nav__links a { font-size: .88rem; font-weight: 500; color: rgba(255,255,255,.8); text-decoration: none; transition: color .2s; }
+    .nav__links a:hover { color: var(--orange); }
+    .nav__phone {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: .85rem; font-weight: 600;
+      color: rgba(255,255,255,.9); text-decoration: none; transition: color .2s;
+    }
+    .nav__phone:hover { color: var(--orange); }
+    .nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav__hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: all .3s; border-radius: 2px; }
+    .nav__hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav__hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav__mobile {
+      display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
+      background: var(--slate-dark); z-index: 199;
+      padding: 20px 5% 28px; border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .nav__mobile.open { display: block; }
+    .nav__mobile ul { list-style: none; }
+    .nav__mobile ul li { border-bottom: 1px solid rgba(255,255,255,.07); }
+    .nav__mobile ul li a { display: block; padding: 13px 0; font-size: .95rem; font-weight: 500; color: rgba(255,255,255,.8); text-decoration: none; transition: color .2s; }
+    .nav__mobile ul li a:hover { color: var(--orange); }
+    .nav__mobile-phone { margin-top: 20px; }
+    .nav__mobile-phone a { display: flex; align-items: center; gap: 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 700; color: var(--orange); text-decoration: none; }
+
+    /* ══════════════════════════
+       HERO
+    ══════════════════════════ */
+    .hero {
+      position: relative; min-height: 100svh;
+      display: flex; align-items: center;
+      background: var(--slate-dark); overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(130deg, #1B2B3B 0%, #243344 55%, #1B2B3B 100%);
+    }
+    .hero__diag-1 {
+      position: absolute; right: 0; top: 0; bottom: 0; width: 45%;
+      background: var(--orange);
+      clip-path: polygon(28% 0, 100% 0, 100% 100%, 0% 100%);
+      opacity: .09; pointer-events: none;
+    }
+    .hero__diag-2 {
+      position: absolute; right: 0; top: 0; bottom: 0; width: 38%;
+      background: var(--orange);
+      clip-path: polygon(35% 0, 100% 0, 100% 100%, 5% 100%);
+      opacity: .06; pointer-events: none;
+    }
+    .hero__dots {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .hero__content {
+      position: relative; z-index: 2;
+      width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 5%;
+      padding-top: calc(var(--nav-h) + 20px);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+      min-height: 100svh;
+    }
+
+    /* Left */
+    .hero__badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(249,115,22,.14); border: 1px solid rgba(249,115,22,.28);
+      border-radius: 50px; padding: 6px 16px; margin-bottom: 22px;
+      font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--orange);
+    }
+    .hero__badge-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; animation: blink 2.2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+    .hero__title { color: var(--white); margin-bottom: 18px; }
+    .hero__title em { font-style: normal; color: var(--orange); }
+    .hero__subtitle { color: rgba(255,255,255,.62); font-size: 1.05rem; line-height: 1.72; margin-bottom: 34px; max-width: 460px; }
+    .hero__actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+    .hero__stats { display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-end; }
+    .hero__stat { display: flex; flex-direction: column; gap: 2px; }
+    .hero__stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--orange); line-height: 1; }
+    .hero__stat-label { font-size: .75rem; color: rgba(255,255,255,.45); font-weight: 400; }
+    .hero__stat-sep { width: 1px; height: 38px; background: rgba(255,255,255,.13); align-self: center; }
+
+    /* Right — info card */
+    .hero__card {
+      background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px; padding: 30px 28px; backdrop-filter: blur(12px);
+    }
+    .hero__card-head {
+      font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
+    }
+    .hero__card-head::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,.1); }
+    .hero__card-row {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .hero__card-row:last-of-type { border-bottom: none; }
+    .hero__card-ico {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: rgba(249,115,22,.14); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero__card-ico svg { width: 18px; height: 18px; stroke: var(--orange); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .hero__card-sub { font-size: .69rem; color: rgba(255,255,255,.38); font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }
+    .hero__card-val { font-size: .88rem; font-weight: 500; color: rgba(255,255,255,.88); margin-top: 1px; }
+    .hero__card-val a { color: inherit; text-decoration: none; transition: color .2s; }
+    .hero__card-val a:hover { color: var(--orange); }
+    .hero__rating {
+      margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.08);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero__stars { display: flex; gap: 2px; }
+    .hero__stars svg { width: 15px; height: 15px; fill: var(--orange); }
+    .hero__rating-txt { font-size: .8rem; color: rgba(255,255,255,.5); }
+    .hero__rating-score { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: var(--orange); }
+
+    /* ══════════════════════════
+       TRUST BAR
+    ══════════════════════════ */
+    .trust {
+      background: var(--orange); padding: 16px 5%;
+    }
+    .trust__inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .trust__item { display: flex; align-items: center; gap: 9px; }
+    .trust__item svg { width: 18px; height: 18px; stroke: rgba(255,255,255,.85); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .trust__item span { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .83rem; font-weight: 600; color: var(--white); white-space: nowrap; }
+    .trust__sep { width: 1px; height: 18px; background: rgba(255,255,255,.3); }
+
+    /* ══════════════════════════
+       GENERIC SECTION
+    ══════════════════════════ */
+    section { padding: 96px 5%; }
+    .section__inner { max-width: 1200px; margin: 0 auto; }
+    .section__header { text-align: center; margin-bottom: 56px; }
+    .section__header p { font-size: 1.02rem; color: var(--text-mid); max-width: 560px; margin: 14px auto 0; line-height: 1.72; }
+
+    /* ══════════════════════════
+       PRODUKTY
+    ══════════════════════════ */
+    .products { background: var(--cool); }
+    .products__grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+    }
+    .pcard {
+      background: var(--white); border-radius: 16px; padding: 30px 26px;
+      border: 1px solid var(--border); position: relative; overflow: hidden;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .pcard::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--orange); transform: scaleX(0); transform-origin: left;
+      transition: transform .3s ease;
+    }
+    .pcard:hover { transform: translateY(-5px); box-shadow: 0 14px 44px rgba(249,115,22,.1); border-color: rgba(249,115,22,.25); }
+    .pcard:hover::after { transform: scaleX(1); }
+    .pcard__ico {
+      width: 54px; height: 54px; background: var(--orange-l); border-radius: 13px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+      transition: background .3s;
+    }
+    .pcard:hover .pcard__ico { background: var(--orange); }
+    .pcard__ico svg { width: 27px; height: 27px; stroke: var(--orange); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; transition: stroke .3s; }
+    .pcard:hover .pcard__ico svg { stroke: var(--white); }
+    .pcard__title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.07rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+    .pcard__desc { font-size: .86rem; color: var(--text-mid); line-height: 1.65; }
+
+    /* ══════════════════════════
+       BATERIE (FEATURED DARK)
+    ══════════════════════════ */
+    .battery {
+      background: var(--slate-dark); color: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .battery::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--orange); }
+    .battery::after  { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--orange); }
+    .battery__bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 75% 50%, rgba(249,115,22,.06) 0%, transparent 65%);
+    }
+    .battery__inner {
+      position: relative; z-index: 1; max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .battery__title { color: var(--white); margin-bottom: 14px; }
+    .battery__desc { color: rgba(255,255,255,.6); line-height: 1.72; margin-bottom: 28px; font-size: .98rem; }
+    .battery__brands { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 32px; }
+    .brand-tag {
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 6px; padding: 5px 13px;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: .8rem; font-weight: 700;
+      color: rgba(255,255,255,.75); letter-spacing: .04em; transition: all .2s;
+    }
+    .brand-tag:hover { background: rgba(249,115,22,.15); border-color: rgba(249,115,22,.4); color: var(--orange); }
+    .battery__types { display: flex; flex-direction: column; gap: 10px; }
+    .btype { display: flex; align-items: center; gap: 10px; font-size: .88rem; color: rgba(255,255,255,.7); }
+    .btype::before { content: ''; width: 7px; height: 7px; background: var(--orange); border-radius: 50%; flex-shrink: 0; }
+
+    /* Right cards */
+    .battery__cards { display: flex; flex-direction: column; gap: 14px; }
+    .bcard {
+      background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.09);
+      border-radius: 12px; padding: 18px 22px;
+      display: flex; align-items: center; gap: 16px;
+      transition: all .3s;
+    }
+    .bcard:hover { background: rgba(249,115,22,.1); border-color: rgba(249,115,22,.3); transform: translateX(5px); }
+    .bcard__ico {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(249,115,22,.15); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .bcard__ico svg { width: 22px; height: 22px; stroke: var(--orange); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .bcard__title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .93rem; font-weight: 700; color: var(--white); }
+    .bcard__sub { font-size: .78rem; color: rgba(255,255,255,.45); margin-top: 2px; }
+
+    /* ══════════════════════════
+       AKČNÍ NABÍDKA
+    ══════════════════════════ */
+    .promo { background: var(--orange-pale); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .promo__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .promocard {
+      background: var(--white); border-radius: 13px; padding: 24px 20px;
+      border: 1px solid var(--border); position: relative; overflow: hidden;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .promocard__badge {
+      position: absolute; top: 12px; right: 12px;
+      background: var(--orange); color: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: .62rem; font-weight: 700;
+      letter-spacing: .08em; padding: 3px 8px; border-radius: 4px;
+    }
+    .promocard:hover { transform: translateY(-4px); box-shadow: 0 10px 36px rgba(249,115,22,.12); border-color: rgba(249,115,22,.22); }
+    .promocard__ico {
+      width: 48px; height: 48px; background: var(--orange-l); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 15px;
+    }
+    .promocard__ico svg { width: 24px; height: 24px; stroke: var(--orange); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .promocard__title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .93rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+    .promocard__desc { font-size: .82rem; color: var(--text-mid); line-height: 1.58; }
+
+    /* ══════════════════════════
+       PROČ MY
+    ══════════════════════════ */
+    .why { background: var(--white); }
+    .why__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .why-item {
+      display: flex; gap: 22px; align-items: flex-start;
+      padding: 30px 28px; border-radius: 16px; border: 1px solid var(--border);
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .why-item:hover { border-color: rgba(249,115,22,.2); box-shadow: 0 8px 32px rgba(249,115,22,.06); }
+    .why-item__num {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 3.2rem; font-weight: 800;
+      color: var(--orange-l); line-height: 1; flex-shrink: 0; min-width: 58px;
+      user-select: none; transition: color .3s;
+    }
+    .why-item:hover .why-item__num { color: rgba(249,115,22,.22); }
+    .why-item__title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.07rem; font-weight: 700; margin-bottom: 7px; color: var(--text-dark); }
+    .why-item__desc { font-size: .87rem; color: var(--text-mid); line-height: 1.65; }
+
+    /* ══════════════════════════
+       KONTAKT
+    ══════════════════════════ */
+    .contact {
+      background: var(--slate-dark); color: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .contact__bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 85% 40%, rgba(249,115,22,.055) 0%, transparent 65%);
+    }
+    .contact__inner {
+      position: relative; z-index: 1; max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    }
+
+    /* Left — hours + contacts */
+    .contact__title { color: var(--white); margin-bottom: 28px; }
+    .hours-table { width: 100%; border-collapse: collapse; }
+    .hours-table tr { border-bottom: 1px solid rgba(255,255,255,.06); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 12px 0; font-size: .9rem; }
+    .hours-table td:first-child { color: rgba(255,255,255,.55); padding-right: 28px; }
+    .hours-table td:last-child { color: var(--white); font-weight: 500; }
+    .hours-table .today td { color: var(--orange); }
+    .contact__divider { height: 1px; background: rgba(255,255,255,.07); margin: 28px 0; }
+    .cinfo { display: flex; flex-direction: column; gap: 14px; }
+    .cinfo__item { display: flex; align-items: flex-start; gap: 13px; }
+    .cinfo__ico {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: rgba(249,115,22,.14); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cinfo__ico svg { width: 18px; height: 18px; stroke: var(--orange); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .cinfo__lbl { font-size: .69rem; color: rgba(255,255,255,.38); font-weight: 600; text-transform: uppercase; letter-spacing: .07em; }
+    .cinfo__val { font-size: .9rem; color: rgba(255,255,255,.88); font-weight: 500; }
+    .cinfo__val a { color: inherit; text-decoration: none; transition: color .2s; }
+    .cinfo__val a:hover { color: var(--orange); }
+
+    /* Right — form */
+    .form-head { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .form-sub { font-size: .86rem; color: rgba(255,255,255,.45); margin-bottom: 26px; line-height: 1.6; }
+    .form-group { margin-bottom: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-lbl { display: block; font-size: .72rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 7px; }
+    .form-ctrl {
+      width: 100%; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.11);
+      border-radius: 8px; padding: 12px 14px;
+      font-family: 'DM Sans', sans-serif; font-size: .9rem; color: var(--white);
+      outline: none; transition: border-color .2s, background .2s;
+    }
+    .form-ctrl::placeholder { color: rgba(255,255,255,.22); }
+    .form-ctrl:focus { border-color: var(--orange); background: rgba(249,115,22,.05); }
+    textarea.form-ctrl { resize: vertical; min-height: 96px; }
+    .form-btn {
+      width: 100%; padding: 14px; margin-top: 4px;
+      background: var(--orange); border: none; border-radius: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: .9rem; font-weight: 700;
+      color: var(--white); cursor: pointer; transition: background .2s, transform .2s;
+    }
+    .form-btn:hover { background: var(--orange-d); transform: translateY(-2px); }
+    .form-note { font-size: .73rem; color: rgba(255,255,255,.26); margin-top: 10px; text-align: center; }
+
+    /* ══════════════════════════
+       FOOTER
+    ══════════════════════════ */
+    .footer { background: #111D29; padding: 64px 5% 32px; }
+    .footer__inner { max-width: 1200px; margin: 0 auto; }
+    .footer__grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;
+      padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.06); margin-bottom: 28px;
+    }
+    .footer__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-bottom: 14px; }
+    .footer__logo-ico { width: 36px; height: 36px; background: var(--orange); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .footer__logo-ico svg { width: 20px; height: 20px; }
+    .footer__logo-txt { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--white); }
+    .footer__logo-txt span { color: var(--orange); }
+    .footer__desc { font-size: .86rem; color: rgba(255,255,255,.38); line-height: 1.7; max-width: 280px; }
+    .footer__col-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 18px; }
+    .footer__links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer__links a { font-size: .86rem; color: rgba(255,255,255,.38); text-decoration: none; transition: color .2s; }
+    .footer__links a:hover { color: var(--orange); }
+    .footer__cinfos { display: flex; flex-direction: column; gap: 10px; }
+    .footer__ci { display: flex; align-items: flex-start; gap: 9px; }
+    .footer__ci svg { width: 15px; height: 15px; stroke: var(--orange); fill: none; stroke-width: 2; stroke-linecap: round; flex-shrink: 0; margin-top: 2px; }
+    .footer__ci span { font-size: .83rem; color: rgba(255,255,255,.38); line-height: 1.55; }
+    .footer__ci a { color: rgba(255,255,255,.38); text-decoration: none; transition: color .2s; }
+    .footer__ci a:hover { color: var(--orange); }
+    .footer__bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer__copy { font-size: .76rem; color: rgba(255,255,255,.22); }
+    .footer__ico-reg { font-size: .76rem; color: rgba(255,255,255,.22); }
+
+    /* ══════════════════════════
+       ANIMATIONS
+    ══════════════════════════ */
+    .fade-up { opacity: 0; transform: translateY(26px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s}
+    .d4{transition-delay:.4s} .d5{transition-delay:.5s} .d6{transition-delay:.6s}
+
+    /* ══════════════════════════
+       RESPONSIVE
+    ══════════════════════════ */
+    @media(max-width:1024px){
+      .products__grid{grid-template-columns:repeat(2,1fr)}
+      .promo__grid{grid-template-columns:repeat(2,1fr)}
+      .battery__inner{grid-template-columns:1fr;gap:48px}
+      .why__grid{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){
+      .nav__links,.nav__phone{display:none}
+      .nav__hamburger{display:flex}
+      .hero__content{grid-template-columns:1fr;padding-top:calc(var(--nav-h)+32px)}
+      .hero__right{display:none}
+      .hero__diag-1,.hero__diag-2{display:none}
+      .trust__sep{display:none}
+      .trust__inner{gap:14px}
+      .products__grid{grid-template-columns:1fr}
+      .promo__grid{grid-template-columns:1fr}
+      .contact__inner{grid-template-columns:1fr;gap:48px}
+      .footer__grid{grid-template-columns:1fr;gap:36px}
+      .form-row{grid-template-columns:1fr}
+      section{padding:64px 5%}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__logo">
+      <div class="nav__logo-icon">
+        <!-- gear icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3.2"/>
+          <path d="M12 2v2.4M12 19.6V22M4.22 4.22l1.7 1.7M18.08 18.08l1.7 1.7M2 12h2.4M19.6 12H22M4.22 19.78l1.7-1.7M18.08 5.92l1.7-1.7"/>
+        </svg>
+      </div>
+      <div class="nav__logo-text">Autodíly <span>STARÝ</span></div>
+    </a>
+    <ul class="nav__links">
+      <li><a href="#produkty">Produkty</a></li>
+      <li><a href="#baterie">Baterie</a></li>
+      <li><a href="#akce">Akce</a></li>
+      <li><a href="#proc-my">Proč my</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="tel:+420572551026" class="nav__phone">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 4.18 2 2 0 0 1 5.06 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L9.4 9.54a16 16 0 0 0 5.06 5.06l.9-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+      </svg>
+      572 551 026
+    </a>
+    <div class="nav__hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="nav__mobile" id="mobileNav">
+  <ul>
+    <li><a href="#produkty" class="mobile-link">Produkty</a></li>
+    <li><a href="#baterie" class="mobile-link">Baterie</a></li>
+    <li><a href="#akce" class="mobile-link">Akce</a></li>
+    <li><a href="#proc-my" class="mobile-link">Proč my</a></li>
+    <li><a href="#kontakt" class="mobile-link">Kontakt</a></li>
+  </ul>
+  <div class="nav__mobile-phone">
+    <a href="tel:+420572551026">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 4.18 2 2 0 0 1 5.06 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L9.4 9.54a16 16 0 0 0 5.06 5.06l.9-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+      </svg>
+      +420 572 551 026
+    </a>
+  </div>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="home">
+  <div class="hero__bg"></div>
+  <div class="hero__diag-1"></div>
+  <div class="hero__diag-2"></div>
+
+  <div class="hero__content">
+    <!-- Left -->
+    <div class="hero__left">
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        Uherské Hradiště · od roku 1992
+      </div>
+      <h1 class="hero__title">
+        Náhradní díly<br>pro <em>každé auto</em>
+      </h1>
+      <p class="hero__subtitle">
+        Škoda i zahraniční značky. Baterie, oleje, laky, příslušenství.<br>
+        Víc než 30 let zkušeností — přijďte nebo zavolejte.
+      </p>
+      <div class="hero__actions">
+        <a href="#produkty" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 0-4 0v2"/></svg>
+          Naše produkty
+        </a>
+        <a href="#kontakt" class="btn btn-ghost">Kontakt &amp; hodiny</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <span class="hero__stat-num">30+</span>
+          <span class="hero__stat-label">let na trhu</span>
+        </div>
+        <div class="hero__stat-sep"></div>
+        <div class="hero__stat">
+          <span class="hero__stat-num">4.8</span>
+          <span class="hero__stat-label">Google hodnocení</span>
+        </div>
+        <div class="hero__stat-sep"></div>
+        <div class="hero__stat">
+          <span class="hero__stat-num">197</span>
+          <span class="hero__stat-label">recenzí</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right — info card -->
+    <div class="hero__right">
+      <div class="hero__card">
+        <div class="hero__card-head">Kontaktní informace</div>
+
+        <div class="hero__card-row">
+          <div class="hero__card-ico">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 4.18 2 2 0 0 1 5.06 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L9.4 9.54a16 16 0 0 0 5.06 5.06l.9-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="hero__card-sub">Telefon</div>
+            <div class="hero__card-val"><a href="tel:+420572551026">+420 572 551 026</a></div>
+          </div>
+        </div>
+
+        <div class="hero__card-row">
+          <div class="hero__card-ico">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="hero__card-sub">Adresa</div>
+            <div class="hero__card-val">Tyršovo náměstí 470<br>686 01 Uherské Hradiště</div>
+          </div>
+        </div>
+
+        <div class="hero__card-row">
+          <div class="hero__card-ico">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="hero__card-sub">Otevírací doba</div>
+            <div class="hero__card-val">Po–Pá: 08:00–17:30<br>Sobota: 08:00–11:00</div>
+          </div>
+        </div>
+
+        <div class="hero__card-row">
+          <div class="hero__card-ico">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="hero__card-sub">E-mail</div>
+            <div class="hero__card-val"><a href="mailto:autodily.stary@seznam.cz">autodily.stary@seznam.cz</a></div>
+          </div>
+        </div>
+
+        <div class="hero__rating">
+          <div class="hero__stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <span class="hero__rating-txt"><span class="hero__rating-score">4.8</span> / 5 · 197 recenzí Google</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TRUST BAR ══════════ -->
+<div class="trust">
+  <div class="trust__inner">
+    <div class="trust__item">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>Ověřený plátce DPH</span>
+    </div>
+    <div class="trust__sep"></div>
+    <div class="trust__item">
+      <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      <span>Platba kartou</span>
+    </div>
+    <div class="trust__sep"></div>
+    <div class="trust__item">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span>Zal. 1992 — 30+ let zkušeností</span>
+    </div>
+    <div class="trust__sep"></div>
+    <div class="trust__item">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>197 spokojených zákazníků</span>
+    </div>
+    <div class="trust__sep"></div>
+    <div class="trust__item">
+      <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      <span>Škoda i zahraniční značky</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PRODUKTY ══════════ -->
+<section class="products" id="produkty">
+  <div class="section__inner">
+    <div class="section__header fade-up">
+      <div class="section-label">Sortiment</div>
+      <h2>Co u nás najdete</h2>
+      <p>Kompletní nabídka pro osobní i dodávkové vozy — od náhradních dílů po příslušenství a péči o vůz.</p>
+    </div>
+    <div class="products__grid">
+
+      <!-- Autodíly -->
+      <div class="pcard fade-up d1">
+        <div class="pcard__ico">
+          <!-- gear/cog icon -->
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+        </div>
+        <div class="pcard__title">Autodíly</div>
+        <div class="pcard__desc">Náhradní díly pro Škodu a zahraniční značky — nové i použité. Motory, převodovky, karosářské díly.</div>
+      </div>
+
+      <!-- Autobaterie -->
+      <div class="pcard fade-up d2">
+        <div class="pcard__ico">
+          <!-- battery icon -->
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="7" width="18" height="11" rx="2"/>
+            <path d="M22 11v3"/>
+            <line x1="8" y1="12" x2="8" y2="12"/>
+            <polyline points="7 12 9 12 9 10 11 10 11 14 13 14 13 12 16 12"/>
+          </svg>
+        </div>
+        <div class="pcard__title">Autobaterie &amp; Motobaterie</div>
+        <div class="pcard__desc">VARTA, BOSCH, EXIDE, PERION, BANNER, BJORN. Klasické, AGM, EFB i gelové baterie.</div>
+      </div>
+
+      <!-- Oleje -->
+      <div class="pcard fade-up d3">
+        <div class="pcard__ico">
+          <!-- oil drop icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+          </svg>
+        </div>
+        <div class="pcard__title">Oleje &amp; Maziva</div>
+        <div class="pcard__desc">Motorové, převodové a hydraulické oleje pro všechny typy vozidel. Originální i alternativní výrobci.</div>
+      </div>
+
+      <!-- Autolaky -->
+      <div class="pcard fade-up d4">
+        <div class="pcard__ico">
+          <!-- spray/paint icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+            <line x1="4" y1="22" x2="4" y2="15"/>
+          </svg>
+        </div>
+        <div class="pcard__title">Autolaky</div>
+        <div class="pcard__desc">Laky ve spreji i v nádobách, základové nátěry, tmelivo a doplňky pro opravy karoserie.</div>
+      </div>
+
+      <!-- Autokosmetika -->
+      <div class="pcard fade-up d5">
+        <div class="pcard__ico">
+          <!-- shield/star icon for care -->
+          <svg viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <div class="pcard__title">Autokosmetika</div>
+        <div class="pcard__desc">Péče o lak, interiér i podvozek. Technické spreje, čisticí prostředky, vosky a ochranné přípravky.</div>
+      </div>
+
+      <!-- Autodoplňky & Potahy -->
+      <div class="pcard fade-up d6">
+        <div class="pcard__ico">
+          <!-- car with accessories -->
+          <svg viewBox="0 0 24 24">
+            <rect x="1" y="3" width="15" height="13" rx="1"/>
+            <path d="M16 8h4l3 5v3h-7V8z"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+            <line x1="10" y1="6" x2="10" y2="6" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="pcard__title">Doplňky, Potahy &amp; Nosiče</div>
+        <div class="pcard__desc">Autopotahy, střešní nosiče Hakr/Thule/Piccar, elektrické příslušenství, tuning a doplňky interiéru.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ BATERIE (FEATURED) ══════════ -->
+<section class="battery" id="baterie">
+  <div class="battery__bg"></div>
+  <div class="battery__inner">
+    <!-- Left -->
+    <div class="fade-up">
+      <div class="section-label section-label--left section-label--dark">Specializace</div>
+      <h2 class="battery__title">Autobaterie &amp;<br>Motobaterie</h2>
+      <p class="battery__desc">
+        Největší výběr baterií v Uherském Hradišti. Poradíme vám s výběrem správné baterie pro váš vůz — osobní, dodávka i motocykl.
+      </p>
+      <div class="battery__brands">
+        <span class="brand-tag">VARTA</span>
+        <span class="brand-tag">BOSCH</span>
+        <span class="brand-tag">EXIDE</span>
+        <span class="brand-tag">PERION</span>
+        <span class="brand-tag">BANNER</span>
+        <span class="brand-tag">BJORN</span>
+      </div>
+      <div class="battery__types">
+        <div class="btype">Klasické startovací baterie</div>
+        <div class="btype">AGM baterie (Start&amp;Stop)</div>
+        <div class="btype">EFB baterie (rozšířená životnost)</div>
+        <div class="btype">Gelové trakční baterie</div>
+        <div class="btype">Motobaterie — běžné i bezúdržbové</div>
+      </div>
+    </div>
+    <!-- Right -->
+    <div class="battery__cards fade-up d2">
+      <div class="bcard">
+        <div class="bcard__ico">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="18" height="11" rx="2"/><path d="M22 11v3"/><polyline points="7 12 9 12 9 10 11 10 11 14 13 14 13 12 16 12"/></svg>
+        </div>
+        <div>
+          <div class="bcard__title">Osobní vozy</div>
+          <div class="bcard__sub">12V · 44–110 Ah · AGM i klasické</div>
+        </div>
+      </div>
+      <div class="bcard">
+        <div class="bcard__ico">
+          <!-- truck/van icon -->
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div>
+          <div class="bcard__title">Dodávky &amp; nákladní vozy</div>
+          <div class="bcard__sub">12V / 24V · vysoká kapacita</div>
+        </div>
+      </div>
+      <div class="bcard">
+        <div class="bcard__ico">
+          <!-- motorbike icon -->
+          <svg viewBox="0 0 24 24">
+            <circle cx="5.5" cy="17.5" r="3.5"/>
+            <circle cx="18.5" cy="17.5" r="3.5"/>
+            <path d="M15 6h-3l-2 3.5H6l-2 5h2"/>
+            <path d="M15 6l2 2.5 2 3-1.5 1"/>
+            <line x1="12" y1="9.5" x2="15" y2="9.5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="bcard__title">Motocykly &amp; skútry</div>
+          <div class="bcard__sub">6V / 12V · klasické i bezúdržbové</div>
+        </div>
+      </div>
+      <div class="bcard">
+        <div class="bcard__ico">
+          <!-- charger/bolt icon -->
+          <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div>
+          <div class="bcard__title">Nabíječky baterií</div>
+          <div class="bcard__sub">Automatické i manuální — v nabídce</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ AKČNÍ NABÍDKA ══════════ -->
+<section class="promo" id="akce">
+  <div class="section__inner">
+    <div class="section__header fade-up">
+      <div class="section-label">Aktuálně v akci</div>
+      <h2>Akční nabídka</h2>
+      <p>Vyberte z aktuálně zvýhodněného zboží. Nabídka se průběžně obměňuje — ptejte se přímo v prodejně.</p>
+    </div>
+    <div class="promo__grid">
+
+      <div class="promocard fade-up d1">
+        <div class="promocard__badge">AKCE</div>
+        <div class="promocard__ico">
+          <!-- first aid / medical cross -->
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="promocard__title">Autolékárničky</div>
+        <div class="promocard__desc">Lékárničky dle aktuálně platných předpisů. Připravte se na STK i zahraniční cesty.</div>
+      </div>
+
+      <div class="promocard fade-up d2">
+        <div class="promocard__badge">AKCE</div>
+        <div class="promocard__ico">
+          <!-- tools / wrench-key -->
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2"/></svg>
+        </div>
+        <div class="promocard__title">Klíče na kola &amp; Zvedáky</div>
+        <div class="promocard__desc">Kříže, momentové klíče a hydraulické zvedáky pro výměnu kol doma i v garáži.</div>
+      </div>
+
+      <div class="promocard fade-up d3">
+        <div class="promocard__badge">AKCE</div>
+        <div class="promocard__ico">
+          <!-- bolt/charger -->
+          <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="promocard__title">Nabíječky baterií</div>
+        <div class="promocard__desc">Automatické nabíječky a udržovací nabíječky pro osobní vozy i motocykly.</div>
+      </div>
+
+      <div class="promocard fade-up d4">
+        <div class="promocard__badge">AKCE</div>
+        <div class="promocard__ico">
+          <!-- child seat / car seat -->
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="promocard__title">Autosedačky pro děti</div>
+        <div class="promocard__desc">Dětské autosedačky splňující bezpečnostní normy. Různé věkové kategorie skladem.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROČ MY ══════════ -->
+<section class="why" id="proc-my">
+  <div class="section__inner">
+    <div class="section__header fade-up">
+      <div class="section-label">Proč nás</div>
+      <h2>Proč si vybrat Autodíly STARÝ?</h2>
+      <p>Spolehlivost, sortiment a osobní přístup — to jsou hodnoty, které nás drží na trhu víc než 30 let.</p>
+    </div>
+    <div class="why__grid">
+      <div class="why-item fade-up d1">
+        <div class="why-item__num">01</div>
+        <div>
+          <div class="why-item__title">30+ let zkušeností</div>
+          <div class="why-item__desc">Firma funguje od roku 1992. Díky tomu máme hluboké znalosti sortimentu a navázané vztahy s prověřenými dodavateli.</div>
+        </div>
+      </div>
+      <div class="why-item fade-up d2">
+        <div class="why-item__num">02</div>
+        <div>
+          <div class="why-item__title">Škoda i zahraniční značky</div>
+          <div class="why-item__desc">Nabízíme díly pro česká i importovaná vozidla. Poradíme s výběrem, vyhledáme i méně dostupné díly.</div>
+        </div>
+      </div>
+      <div class="why-item fade-up d3">
+        <div class="why-item__num">03</div>
+        <div>
+          <div class="why-item__title">Hodnocení 4.8 / 5</div>
+          <div class="why-item__desc">197 recenzí na Googlu hovoří za vše. Zákazníci oceňují odbornost, ochotu a šíři sortimentu.</div>
+        </div>
+      </div>
+      <div class="why-item fade-up d4">
+        <div class="why-item__num">04</div>
+        <div>
+          <div class="why-item__title">Snadná platba &amp; dostupnost</div>
+          <div class="why-item__desc">Platba kartou i hotovostí. Centrální poloha na Tyršově náměstí v Uherském Hradišti — jednoduše dostupní.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ KONTAKT ══════════ -->
+<section class="contact" id="kontakt">
+  <div class="contact__bg"></div>
+  <div class="contact__inner">
+    <!-- Left -->
+    <div class="fade-up">
+      <span class="section-label section-label--left section-label--dark">Otevírací doba</span>
+      <h2 class="contact__title">Kdy nás najdete</h2>
+      <table class="hours-table">
+        <tr><td>Pondělí</td><td>08:00 – 17:30</td></tr>
+        <tr><td>Úterý</td><td>08:00 – 17:30</td></tr>
+        <tr><td>Středa</td><td>08:00 – 17:30</td></tr>
+        <tr><td>Čtvrtek</td><td>08:00 – 17:30</td></tr>
+        <tr><td>Pátek</td><td>08:00 – 17:30</td></tr>
+        <tr><td>Sobota</td><td>08:00 – 11:00</td></tr>
+        <tr><td>Neděle</td><td>Zavřeno</td></tr>
+      </table>
+      <div class="contact__divider"></div>
+      <div class="cinfo">
+        <div class="cinfo__item">
+          <div class="cinfo__ico">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 4.18 2 2 0 0 1 5.06 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L9.4 9.54a16 16 0 0 0 5.06 5.06l.9-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="cinfo__lbl">Telefon / Fax</div>
+            <div class="cinfo__val"><a href="tel:+420572551026">+420 572 551 026</a></div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="cinfo__lbl">E-mail</div>
+            <div class="cinfo__val">
+              <a href="mailto:autodily.stary@seznam.cz">autodily.stary@seznam.cz</a><br>
+              <a href="mailto:info@autodilystary.cz">info@autodilystary.cz</a>
+            </div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="cinfo__lbl">Adresa</div>
+            <div class="cinfo__val">Tyršovo náměstí 470<br>686 01 Uherské Hradiště</div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <div class="cinfo__lbl">IČ / DIČ</div>
+            <div class="cinfo__val">IČ: 46966366 &nbsp;·&nbsp; DIČ: CZ46966366</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right — form -->
+    <div class="fade-up d2">
+      <div class="form-head">Napište nám</div>
+      <div class="form-sub">Máte dotaz na konkrétní díl nebo zboží? Napište a ozveme se zpět co nejdříve.</div>
+      <form id="contactForm" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-lbl">Jméno a příjmení</label>
+            <input type="text" class="form-ctrl" placeholder="Jan Novák" required>
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Telefon</label>
+            <input type="tel" class="form-ctrl" placeholder="+420 777 000 000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">E-mail</label>
+          <input type="email" class="form-ctrl" placeholder="jan@email.cz" required>
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">Vozidlo (nepovinné)</label>
+          <input type="text" class="form-ctrl" placeholder="Škoda Octavia 2.0 TDI 2018">
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">Zpráva</label>
+          <textarea class="form-ctrl" placeholder="Poptávám díl / mám dotaz na..."></textarea>
+        </div>
+        <button type="submit" class="form-btn">Odeslat zprávu →</button>
+      </form>
+      <p class="form-note">Vaše údaje jsou použity pouze pro zodpovězení dotazu.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__grid">
+      <!-- Brand -->
+      <div>
+        <a href="#" class="footer__logo">
+          <div class="footer__logo-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+              <circle cx="12" cy="12" r="3.2"/>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+            </svg>
+          </div>
+          <div class="footer__logo-txt">Autodíly <span>STARÝ</span></div>
+        </a>
+        <p class="footer__desc">Prodej autodílů, baterií, olejů a příslušenství pro osobní i dodávkové vozy. Uherské Hradiště od roku 1992.</p>
+      </div>
+      <!-- Nav -->
+      <div>
+        <div class="footer__col-title">Navigace</div>
+        <ul class="footer__links">
+          <li><a href="#produkty">Produkty</a></li>
+          <li><a href="#baterie">Baterie</a></li>
+          <li><a href="#akce">Akční nabídka</a></li>
+          <li><a href="#proc-my">Proč my</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <!-- Contact -->
+      <div>
+        <div class="footer__col-title">Kontakt</div>
+        <div class="footer__cinfos">
+          <div class="footer__ci">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 4.18 2 2 0 0 1 5.06 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L9.4 9.54a16 16 0 0 0 5.06 5.06l.9-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span><a href="tel:+420572551026">+420 572 551 026</a></span>
+          </div>
+          <div class="footer__ci">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span><a href="mailto:autodily.stary@seznam.cz">autodily.stary@seznam.cz</a></span>
+          </div>
+          <div class="footer__ci">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Tyršovo náměstí 470<br>686 01 Uherské Hradiště</span>
+          </div>
+          <div class="footer__ci">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Po–Pá: 08:00–17:30<br>So: 08:00–11:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2025 Autodíly STARÝ, s.r.o. · IČ 46966366</span>
+      <span class="footer__ico-reg">Uherské Hradiště · Zlínský kraj</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── NAV scroll ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ── Hamburger ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+    });
+  });
+
+  // ── Fade-up IntersectionObserver ──
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // ── Form submit ──
+  function submitForm(e) {
+    e.preventDefault();
+    const btn = document.querySelector('.form-btn');
+    btn.textContent = '✓ Zpráva odeslána';
+    btn.style.background = '#16a34a';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Odeslat zprávu →';
+      btn.style.background = '';
+      btn.disabled = false;
+      e.target.reset();
+    }, 3500);
+  }
+</script>
+</body>
+</html>
